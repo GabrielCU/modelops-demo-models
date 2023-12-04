@@ -11,6 +11,7 @@ from h2o.automl import H2OAutoML
 
 
 def check_java():
+    import jdk
     # Determine the home directory of the current user
     user_home_dir = os.path.expanduser('~')
  
@@ -33,15 +34,6 @@ def check_java():
         print(f"Java installed at {os.environ['JAVA_HOME']}")
     else:
         print(f"Java is installed at {os.environ['JAVA_HOME']}")
-        
-def check_java():
-    try:
-        print(os.environ['JAVA_HOME'])
-    except:
-        print ('Installing Java...')
-        import jdk
-        jdk.install('17', path='/usr/local/jdk')
-        os.environ['JAVA_HOME'] = '/usr/local/jdk/jdk-17.0.7+7'
 
 
 def train(context: ModelContext, **kwargs):
