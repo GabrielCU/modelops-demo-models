@@ -76,7 +76,7 @@ def train(context: ModelContext, **kwargs):
 
     # export model artefacts
     mojo = model.download_mojo(path=context.artifact_output_path, get_genmodel_jar=True)
-    new_mojo = os.path.join(os.path.abspath(os.getcwd()), context.artifact_output_path, "model.po")
+    new_mojo = os.path.join(os.path.abspath(os.getcwd()), context.artifact_output_path, "model.h2o")
     if os.path.isfile(new_mojo):
         print("The file already exists")
     else:
