@@ -5,9 +5,12 @@ from aoa import (
     aoa_create_context,
     ModelContext
 )
-import os
 import h2o
 from h2o.automl import H2OAutoML
+
+import os
+import os.path
+import jdk
 
 
 def check_java():
@@ -66,7 +69,7 @@ def train(context: ModelContext, **kwargs):
 
     # export model artefacts
     mojo = model.download_mojo(path=context.artifact_output_path, get_genmodel_jar=True)
-    new_mojo = os.path.join(os.path.abspath(os.getcwd()), context.artifact_output_path, "model.h2o")
+    new_mojo = os.path.join(os.path.abspath(os.getcwd()), context.artifact_output_path, "model.po")
     if os.path.isfile(new_mojo):
         print("The file already exists")
     else:
