@@ -14,22 +14,29 @@ import jdk
 
 
 def check_java():
-    import jdk
     # Determine the home directory of the current user
     user_home_dir = os.path.expanduser('~')
- 
-    # Construct the Java installation path in the user's home directory
-    java_home_path = os.path.join(user_home_dir, '.jdk', 'jdk-17.0.9+9')
+
+    # Check if the 'JupyterLabRoot' directory exists
+    jupyterlab_root_dir = os.path.join(user_home_dir, 'JupyterLabRoot')
+
+    # Determine Java installation path based on the existence of 'JupyterLabRoot'
+    if os.path.isdir(jupyterlab_root_dir):
+        java_home_path = os.path.join(jupyterlab_root_dir, '.jdk', 'jdk-17.0.9+9')
+    else:
+        java_home_path = os.path.join(user_home_dir, '.jdk', 'jdk-17.0.9+9')
+
     # Set JAVA_HOME to the default or existing environment value
     os.environ['JAVA_HOME'] = os.getenv('JAVA_HOME', java_home_path)
- 
+
     # Check if Java is already installed
     if not os.path.isdir(os.environ['JAVA_HOME']):
         print('Installing Java...')
- 
-        # Install Java in the user's home directory
-        jdk.install('17', path=os.path.join(user_home_dir, '.jdk'))
- 
+
+        # Install Java in the determined directory
+        jdk_install_path = jupyterlab_root_dir if os.path.isdir(jupyterlab_root_dir) else user_home_dir
+        jdk.install('17', path=os.path.join(jdk_install_path, '.jdk'))
+
         # Update JAVA_HOME and PATH after successful installation
         os.environ['JAVA_HOME'] = java_home_path
         os.environ['PATH'] = f"{os.environ.get('PATH')}:{os.environ.get('JAVA_HOME')}/bin"
