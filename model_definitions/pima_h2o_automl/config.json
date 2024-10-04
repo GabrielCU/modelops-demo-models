@@ -1,0 +1,7 @@
+{
+   "hyperParameters": {
+      "exclude": "knn",
+        "verbose": 2,
+        "max_runtime_secs": 300
+   }
+}

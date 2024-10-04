@@ -1,0 +1,2 @@
+teradatamodelops==7.0.3
+teradataml==17.20.0.6
