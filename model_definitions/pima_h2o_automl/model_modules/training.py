@@ -1,7 +1,4 @@
-from teradataml import (
-    DataFrame,
-    AutoClassifier,
-)
+from teradataml import *
 
 from aoa import (
     record_training_stats,
