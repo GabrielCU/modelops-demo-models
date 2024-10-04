@@ -1,2 +1,2 @@
-teradatamodelops==7.0.3
+teradatamodelops==7.0.2
 teradataml==20.0.0.1
