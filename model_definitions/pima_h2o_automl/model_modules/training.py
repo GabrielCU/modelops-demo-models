@@ -36,12 +36,6 @@ def train(context: ModelContext, **kwargs):
     aml.leader()
 
     print("Finished training")
-
-    # Save the trained model to SQL
-    aml.result.to_sql(f"model_${context.model_version}", if_exists="replace")  
-    print("Saved trained model")
-
-    print("Saved trained model")
     
     record_training_stats(
         train_df,
